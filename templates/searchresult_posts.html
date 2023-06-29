@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load hitcount_tags %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="path">
+    <a href="{% url 'home' %}">Home</a>
+    <i class="fa fa-angle-right"></i>
+    <a href="{{category.get_url}}">{{category.title}}</a>
+    <i class="fa fa-angle-right"></i>
+    Search {{ dropdown }}&nbsp;:&nbsp;"{{ query }}"
+</div>
+{% if results %}
+<div class="poststable">
+    <div class="tablehead">
+        <div class="status">Status</div>
+        <div class="subjects">Subject</div>
+        <div class="replies">Comments/ Views</div>
+        <div class="lastpost">Latest Comment</div>
+    </div>
+    {% for post in results %}
+    <div class="tablerow">
+        <div class="status"><i class="fa fa-fire"></i></div>
+        <div class="subjects"><a href="{{post.get_url}}">{{post.title}}</a>
+            <br><br><span>Started by&nbsp;<a href="#">{{post.user.fullname|title}}</a></span>
+        </div>
+        <div class="replies">{{post.num_comments}}/{% get_hit_count for post %}</div>
+        <div class="lastpost">{{post.last_reply.date|date}}</div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<br>
+<div class = "noresults">
+    <h1 style="color: white; text-align: center;">Sorry, no results found for "{{ query }}"</h1>
+</div>
+{% endif %}
+<br>
+<br>  
+{% else %}
+<br><br><br><br>
+<h1 style="color:rgb(24, 156, 180); text-align: center;"> You are not logged in! </h1>
+<br><br><br><br>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,103 @@
+{% extends 'base.html'%}
+{% comment %} {% load static %} {% endcomment %}
+{% load hitcount_tags %}
+
+
+{% block content%}
+{% if user.is_authenticated %}
+
+    <div class="container">
+        <div class="path">
+            <a href="{% url 'home' %}">Home</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="{{post.categories.all.0.get_url}}">{{post.categories.all.0}}</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="{{post.get_url}}">{{post.title}}</a>
+        </div>
+        <div class="post-content">
+            <div class="head">
+                <div class="user">
+                    Author
+                </div>
+                <div class="title" style="display: block; align-content : center">
+                    {{post.title}}&nbsp;&nbsp;&nbsp;<div class="postdate" style="color: gray;">{{post.date|date}}</div>
+                    {% comment %} ({% get_hit_count for post %}) {% endcomment %}
+                </div>
+            </div>
+            <div class="content">
+                <div class="authors">
+                    <div class="username">
+                        <a href="#">{{post.user.fullname|title}}</a>
+                    </div>
+                    <div class="userimage">
+                        <img src="{{post.user.profile_pic.url}}">
+                    </div>
+                    <div class="userdetails">   
+                        <div class="userpost">
+                            Posts: 10
+                        </div>
+                        <div class="userscore">
+                            Score : {{post.user.points}}
+                        </div>
+                    </div>
+                </div>
+                <div class="post-text">
+                    {{post.content}}
+                </div>
+            </div>
+            <div class="commbtn" style="float: right;">
+                <button id="commentbtn" onclick="toggleCommentarea()">Comment</button>
+            </div>
+            <form action="." method="POST">
+            {% csrf_token %}
+            <div class="commentarea hide" id="commentarea">
+                <textarea name="comment" id="comment" placeholder="Write your comment here..."></textarea>
+                <input type="submit"     value="Submit" name="commentform">
+            </div>
+            </form>
+        </div>
+        <div class="comments-section">
+            <div class="title">
+                Comments&nbsp;({{post.num_comments}})
+            </div>
+    {% for comment in post.comments.all %}
+            <div class="commentrow">
+                <div class="commentor" style="display: flex;">
+                    <a href="#">{{comment.user}}</a>&nbsp;&nbsp;&nbsp;<div class="commentdate" style="color: gray;">{{comment.date|date}}</div>
+                </div>
+                <div class="commentcontent">
+                    {{comment.content}}
+                </div>
+                <div>
+                    <button id="replybtn{{comment.id}}" onclick="toggleReplyarea('replyarea{{comment.id}}','replybtn{{comment.id}}')">Reply</button>
+                </div>
+            </div>
+            <form action="." method="POST">
+            {% csrf_token %}
+            <div class="replyarea hide" id="replyarea{{comment.id}}">
+                <textarea name="reply" id="reply" placeholder="Write your reply here..."></textarea>
+                <input type="submit" name="replyform" id="" value="Submit">
+                <input type="hidden" name="comment_id" value="{{comment.id}}">
+            </div>
+            </form>
+        {% for reply in comment.replies.all %}
+            <div class="replyrow" >
+                <div class="replier" style="display: flex;">
+                    <a href="#">{{reply.user}}</a>&nbsp;&nbsp;&nbsp;<div class="replydate" style="color: gray;">{{reply.date|date}}</div>
+                </div>
+                <div class="repycontent">
+                    {{reply.content}}
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+        </div>
+    </div>
+
+{% else %}
+<br><br><br><br>
+<h1 style="color:rgb(24, 156, 180); text-align: center;"> You are not logged in! </h1>
+<br><br><br><br>
+{% endif %}
+
+    {% endblock content %}

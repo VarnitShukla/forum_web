@@ -1,0 +1,557 @@
+
+html {
+    background-color: black;
+    color: rgb(255, 255, 255);
+    font-family: 'Slabo 27px', serif;
+    font-size: 18px;
+}
+
+a {
+    color: rgb(24, 156, 180);
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+i {
+    color: rgb(255, 145, 0);
+}
+
+body {
+    background-image: url("bgimg.jpg");
+}
+
+/* home.html */
+
+.container {
+    margin: 20px;
+    padding: 20px;
+}
+
+.subforum {
+    display: grid;
+    margin-left: 10%;
+    width: 80%;
+    grid-template-columns: 10% 80% 10%;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    border: 1px solid rgb(24, 156, 180);
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 1px rgb(24, 156, 180);
+}
+
+
+
+.col {
+    background-color: rgb(28, 28, 28);
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description {
+    display: block;
+}
+
+.latest {
+    grid-row: 2;
+    grid-column: 1 / span 3;
+    display: block;
+}
+
+.icon {
+    display: flex;
+    color: rgb(24, 156, 180);
+    justify-content: center;
+    align-items: center;
+}
+
+.separator {
+    border: 1px solid rgb(255, 119, 0);
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 5px;
+}
+
+.navigation {
+    background-color: rgb(28, 28, 28);
+    padding: 10px;
+    width: 400px;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.navlist {
+    list-style: none;
+    overflow: hidden;
+}
+
+.navitem a {
+    color: white;
+    float: right;
+    display: block;
+    text-align: center;
+    margin-inline: 30px;
+    font-size: large;
+}
+
+.navitem a:hover {
+    color: rgb(24, 156, 180);
+}
+
+.closebtn i {
+    float: left;
+    cursor: pointer;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.closebtn i:hover {
+    color: rgb(249, 0, 0);
+}
+
+.hide {
+    display: none;
+}
+
+.baricon {
+    font-size: 60px;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 10px;
+    color: rgb(254, 254, 254);
+}
+
+.logo {
+    font-family: 'Staatliches', cursive;
+    font-size: 60px;
+}
+
+.searchbox {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    /* box-shadow: 1px 1px 10px 1px rgb(24, 156, 180); */
+}
+
+.searchbox select {
+    border-radius: 5px;
+    background-color: black;
+    border: 1px solid rgb(24, 156, 180);
+    color: gray;
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+}
+
+.searchbox input {
+    border-radius: 5px;
+    background-color: black;
+    color: gray;
+    border: 1px solid rgb(24, 156, 180);
+    padding: 5px;
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+}
+
+.searchbox button {
+    border-radius: 5px;
+    border: 1px solid rgb(24, 156, 180);
+    padding: 5px;
+    background-color: rgb(28, 28, 28);
+    color: rgb(24, 156, 180);
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+}
+
+.searchbox button:hover {
+    background-color: rgb(24, 156, 180);
+    color: rgb(28, 28, 28);
+}
+
+.chart {
+    margin: 20px;
+    font-size: 40px;
+}
+
+.statscol {
+    display: block;
+    padding: 5px;
+    margin: 5px;
+    margin-left: 20px;
+    width: 300px;
+    background-color: rgb(28, 28, 28);
+    border-radius: 5px;
+}
+
+.footer {
+    margin: 20px;
+    display: flex;
+    /* text-align: center;  */
+    justify-content: center;
+}
+
+/* for posts */
+
+.tablehead {
+    display: grid;
+    grid-template-columns: 15% 50% 18% 17%;
+    height: max-content;
+}
+
+.tablehead .status,
+.tablehead .replies,
+.tablehead .subjects,
+.tablehead .lastpost {
+    background-color: rgb(28, 28, 28);
+    margin: 2px;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    border-color: rgb(255, 119, 0);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.tablerow {
+    display: grid;
+    grid-template-columns: 15% 50% 18% 17%;
+    height: max-content;
+}
+
+.tablerow .status,
+.tablerow .replies,
+.tablerow .subjects,
+.tablerow .lastpost {
+    background-color: rgb(28, 28, 28);
+    font-size: 16px;
+    margin: 2px;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: rgb(255, 119, 0);
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+.tablerow .subjects {
+    display: block;
+}
+
+.path {
+    margin: 20px;
+    font-size: 30px;
+}
+
+/* for details */
+
+.head {
+    display: flex;
+}
+
+.user {
+    flex: 20%;
+    background-color: rgb(28, 28, 28);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
+    border-color: rgb(255, 119, 0);
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+}
+
+.title {
+    flex: 80%;
+    background-color: rgb(28, 28, 28);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
+    border-color: rgb(255, 119, 0);
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+}
+
+.authors {
+    flex: 20%;
+    text-align: center;
+    background-color: rgb(28, 28, 28);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
+    border-color: rgb(255, 119, 0);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.post-text {
+    flex: 80%;
+    margin: 5px;
+    background-color: rgb(28, 28, 28);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
+    border-color: rgb(255, 119, 0);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.userimage img {
+    max-width: 50px;
+    max-height: 80px;
+}
+
+.commbtn button {
+    border-radius: 5px;
+    border: 1px solid rgb(24, 156, 180);
+    padding: 5px;
+    background-color: rgb(28, 28, 28);
+    color: rgb(24, 156, 180);
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+    float: right;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.commbtn button:hover {
+    background-color: rgb(24, 156, 180);
+    color: rgb(28, 28, 28);
+}
+
+.commentarea {
+    margin-top: 50px;
+}
+
+.commentarea textarea {
+    border-radius: 5px;
+    border: 1px solid rgb(24, 156, 180);
+    padding: 5px;
+    background-color: rgb(28, 28, 28);
+    color: white;
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+    width: 100%;
+    min-height: 50px;
+}
+
+.commentarea input {
+    border-radius: 5px;
+    border: 1px solid rgb(24, 156, 180);
+    padding: 5px;
+    background-color: rgb(28, 28, 28);
+    color: rgb(24, 156, 180);
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+    float: right;
+    cursor: pointer;
+}
+
+.commentarea input:hover {
+    background-color: rgb(24, 156, 180);
+    color: rgb(28, 28, 28);
+}
+
+.comments-section {
+    margin-top: 50px;
+}
+
+.commentrow {
+    margin: 20px;
+}
+
+.commentcontent {
+    margin: 5px;
+}
+
+.commentrow button {
+    border-radius: 5px;
+    border: 1px solid rgb(24, 156, 180);
+    padding: 5px;
+    background-color: rgb(28, 28, 28);
+    color: rgb(24, 156, 180);
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+    float: right;
+    cursor: pointer;
+}
+
+.comments-section textarea {
+    border-radius: 5px;
+    border: 1px solid rgb(24, 156, 180);
+    padding: 10px;
+    background-color: rgb(28, 28, 28);
+    color: white;
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+    width: 100%;
+    margin-right: 40px;
+    margin-top: 20px;
+    min-height: 50px;
+}
+
+.replyarea {
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+.comments-section input {
+    border-radius: 5px;
+    border: 1px solid rgb(24, 156, 180);
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: rgb(28, 28, 28);
+    color: rgb(24, 156, 180);
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+    float: right;
+    cursor: pointer;
+}
+
+.comments-section input:hover {
+    background-color: rgb(24, 156, 180);
+    color: rgb(28, 28, 28);
+}
+
+.commentrow button:hover {
+    background-color: rgb(24, 156, 180);
+    color: rgb(28, 28, 28);
+}
+
+.replyrow {
+    width: 90%;
+    margin-left : 40px;
+    margin-top : 10px;  
+}
+
+.formcontainer{
+    color: rgb(24, 156, 180);
+}
+
+.formcontainer input{
+    border-radius: 5px;
+    border: 1px solid rgb(24, 156, 180);
+    background-color: rgb(28, 28, 28);
+    color: rgb(24, 156, 180);
+    box-shadow: 1px 1px 5px 1px rgb(24, 156, 180);
+}
+
+.formcontainer textarea{
+    border-radius: 5px;
+    border: 1px solid rgb(24, 156, 180);
+    background-color: rgb(28, 28, 28);
+    color: rgb(24, 156, 180);
+}
+
+.formsubmit input{
+    background-color: rgb(24, 156, 180);
+    color: rgb(28, 28, 28);
+    cursor: pointer;
+    margin-block: 20px;
+}
+
+.navbar{
+    display: grid;
+    grid-template-columns: max-content auto 5%;
+}
+
+.navbar .logo{
+    text-align: left;
+}
+
+.newpost{
+    font-size: 50px;
+    color: rgb(24, 156, 180);
+    margin-left: 40px;
+}
+
+/* for mobile */
+@media screen and (max-width : 660px) {
+    .subforum {
+        display: grid;
+        width: 200px;
+
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 65% 35%;
+        border: 1px solid rgb(24, 156, 180);
+        border-radius: 5px;
+    }
+
+    .col {
+        background-color: rgb(28, 28, 28);
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+    }
+
+    .stats {
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 1;
+    }
+
+    .latest {
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 1;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icon {
+        display: flex;
+        color: rgb(24, 156, 180);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .separator {
+        border: 1px solid rgb(254, 254, 254);
+        border-radius: 5px;
+        margin: 20px;
+    }
+
+    .navbar {
+        display: grid;
+        grid-template-rows: 33% 33% 34%;
+    }
+
+    .navigation {
+        width: 200px;
+        grid-row: 1 / span 2;
+    }
+
+    /* for phone style devices the navigation list should be vertical instead of horizontal */
+    .navitem {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 3fr;
+    }
+
+    .baricon {
+        font-size: 40px;
+        margin-top: 30px;
+    }
+
+    .logo {
+        grid-row: 3 / span 1;
+    }
+
+    .searchbox select {
+        width: 50px;
+    }
+
+    .statcol {
+        width: 100px;
+    }
+
+}

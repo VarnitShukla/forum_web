@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <nav class="navigation hide" id="navig">
+                <ul class="navlist">
+                    <span class="closebtn" id="close" onclick="hideNav()"><i class="fa fa-close"></i></span>
+                    {% if user.is_authenticated %}
+                    <li class="navitem"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="navitem"><a href="{% url 'update_profile' %}">Profile</a></li>
+                    <li class="navitem"><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li class="navitem"><a href="{% url 'signin' %}">Login</a></li>
+                    <li class="navitem"><a href="{% url 'signup' %}">Register</a></li>
+                    <li class="navitem"><a href="#">About</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <a href="#" class="baricon" id="baricon" onclick="hideBar()"><i class="fa fa-bars"></i></a>
+            <div class="logo">
+                <a href="{% url 'home' %}">Forum Web</a>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="newpost">
+            <a href="{% url 'post_creation' %}"><i class="fa fa-plus"></i></a>
+            </div>
+        </div>
+        <div class="user">
+            Welcome, {{user.username}}!
+        </div>
+            {% else %}
+        </div>
+        {% endif %}
+    </header>
+    <div class="separator"></div>
+    {% block content %}
+    {% endblock content %}
+   
+    <div class="separator"></div>
+    <footer>
+        <span class="footer">© Varnit Shukla | All rights reserved.</span>
+    </footer>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

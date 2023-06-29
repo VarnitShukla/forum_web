@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h1 style="color: rgb(24, 156, 180); text-align: center;">Let your creativity show!</h1>
+<br>
+<br>
+<div class="formcontainer" style="align: center;">
+    <form method="POST" style="margin-left: 50px; ">
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class="formsubmit" style="text-align: center;">
+        <input type="submit" value="Save">
+        </div>  
+    </form>
+</div>
+{% else %}
+<br><br><br><br>
+<h1 style="color:rgb(24, 156, 180); text-align: center;"> You are not logged in! </h1>
+<br><br><br><br>
+{% endif %}
+{% endblock content %}

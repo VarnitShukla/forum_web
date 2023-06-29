@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% comment %} {% load static %} {% endcomment %}
+{% load hitcount_tags %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<form action="{% url 'searchresult_posts' %}" role="form" method="GET">
+    <div class="searchbox">
+            <select name="dropdown_posts" id="dropdown_posts">
+                <option value="Everything">Everything</option>
+                <option value="Title">Title</option>
+                <option value="Content">Content</option>
+            </select>
+            <input type="text" name="searchquery_posts" id="searchquery_posts" placeholder="Search...">
+            <button type="submit" name="search_posts" id="search_posts"><i class="fa fa-search"></i></button>
+    </div>
+    <input type="hidden" name="category" value="{{category.title}}">
+</form>
+<div class="separator"></div>
+    <div class="container">
+        <div class="path">
+            <a href="{% url 'home' %}">Home</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="#">{{category}}</a>
+        </div>
+        <div class="poststable">
+            <div class="tablehead">
+                <div class="status">Status</div>
+                <div class="subjects">Subject</div>
+                <div class="replies">Comments/ Views</div>
+                <div class="lastpost">Latest Comment</div>
+            </div>
+            {% for post in posts %}
+            <div class="tablerow">
+                <div class="status"><i class="fa fa-fire"></i></div>
+                <div class="subjects"><a href="{{post.get_url}}">{{post.title}}</a>
+                    <br><br><span>Posted by&nbsp;<a href="#">{{post.user.fullname|title}}</a></span>
+                </div>
+                <div class="replies">{{post.num_comments}}/{% get_hit_count for post %}</div>
+                <div class="lastpost">{{post.last_reply.date|date}}</div>
+            </div>
+            {% endfor %}
+        </div>  
+        <div class="pagination">
+            Pages: &nbsp;&nbsp;{% for num_page in posts.paginator.page_range %}<a href="?page={{num_page}}">{{num_page}}</a>&nbsp;&nbsp;{% endfor %}
+        </div>
+    </div>
+    {% else %}
+<br><br><br><br>
+<h1 style="color:rgb(24, 156, 180); text-align: center;"> You are not logged in! </h1>
+<br><br><br><br>
+{% endif %}
+    
+    {% endblock content %}

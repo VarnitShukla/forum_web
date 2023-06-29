@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% comment %} {% load static %} {% endcomment %}
+
+
+{%block content%}
+{% if user.is_authenticated %}
+    <form action="{% url 'searchresult_home' %}" role="form" method="GET">
+    <div class="searchbox">
+            <select name="dropdown_home" id="dropdown_home">
+                <option value="Everything">Everything</option>
+                <option value="Title">Title</option>
+                <option value="Content">Content</option>
+            </select>
+            <input type="text" name="searchquery_home" id="searchquery_home" placeholder="Search...">
+            <button type="submit" name="search_home" id="search_home"><i class="fa fa-search"></i></button>
+    </div>
+    </form>
+    <div class="separator"></div>
+    <div class="container">
+    {% for forum in forums %}
+        <div class="subforum">
+            <div class="col icon">
+                <i class="fa fa-car center"></i>
+            </div>
+            <div class="col description">
+                <div><a href="{{forum.get_url}}">{{forum.title}}</a></div>
+                {{forum.description}}
+            </div>
+            <div class="col stats">{{forum.get_post_count}}</div>
+            {% if forum.get_post_count is not 0 %}
+            <div class="col latest">Latest Post:&nbsp;<a href="{{forum.get_last_post.get_url}}">{{forum.get_last_post.title}}</a>&nbsp;by&nbsp;<a
+                    href="{  }">{{forum.get_last_post.user.fullname|title}}</a>&nbsp;on {{forum.get_last_post.date|date}}</div>
+            {% endif %}
+        </div>
+        <br>
+        <br>
+        <br>
+        {% endfor %}
+        <div class="separator"></div>
+        <div class="frmstats">
+            <span class="chart">Stats&nbsp;<i class="fa fa-bar-chart"></i></span>
+            <div class="statscol">Total Users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span style="color: rgb(24, 156, 180);">{{num_users}}</span></div>
+            <div class="statscol">Total Categories&nbsp;: &nbsp;<span style="color: rgb(24, 156, 180);">{{num_categories}}</span></div>
+            <div class="statscol">Total Posts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span style="color: rgb(24, 156, 180);">{{num_posts}}</span></div>
+        </div>
+    </div>
+    {% else %}
+<br><br><br><br>
+<h1 style="color:rgb(24, 156, 180); text-align: center;"> You are not logged in! </h1>
+<br><br><br><br>
+{% endif %}
+
+    {%endblock content%}
